@@ -1,0 +1,4 @@
+services:
+  AppBundle\Service\ChurroTimeEntryStatsHelper:
+    public: true
+    class: AppBundle\Service\ChurroTimeEntryStatsHelper
