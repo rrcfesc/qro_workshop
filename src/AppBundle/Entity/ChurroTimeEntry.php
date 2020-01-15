@@ -2,10 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\ChurroTimeEntryRepository")
  * @ORM\Table()
  */
 class ChurroTimeEntry
@@ -23,21 +24,29 @@ class ChurroTimeEntry
     private $type;
 
     /**
+     * @var DateTime
+     *
      * @ORM\Column(type="datetime")
      */
     private $startCookingAt;
 
     /**
+     * @var DateTime
+     *
      * @ORM\Column(type="datetime")
      */
     private $endCookingAt;
 
     /**
+     * @var DateTime
+     *
      * @ORM\Column(type="datetime")
      */
     private $startCleanupAt;
 
     /**
+     * @var DateTime
+     *
      * @ORM\Column(type="datetime")
      */
     private $endCleanupAt;
@@ -48,7 +57,9 @@ class ChurroTimeEntry
     private $quantityMade;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Baker")
+     * @var Baker
+     *
+     * @ORM\ManyToOne(targetEntity="Baker", fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      */
     private $bakedBy;
@@ -68,42 +79,63 @@ class ChurroTimeEntry
         $this->type = $type;
     }
 
+    /**
+     * @return DateTime
+     */
     public function getStartCookingAt()
     {
         return $this->startCookingAt;
     }
 
-    public function setStartCookingAt($startCookingAt)
+    /**
+     * @return void
+     */
+    public function setStartCookingAt(DateTime $startCookingAt)
     {
         $this->startCookingAt = $startCookingAt;
     }
 
+    /**
+     * @return DateTime
+     */
     public function getEndCookingAt()
     {
         return $this->endCookingAt;
     }
 
-    public function setEndCookingAt($endCookingAt)
+    /**
+     * @return void
+     */
+    public function setEndCookingAt(DateTime $endCookingAt)
     {
         $this->endCookingAt = $endCookingAt;
     }
 
+    /**
+     * @return DateTime
+     */
     public function getStartCleanupAt()
     {
         return $this->startCleanupAt;
     }
 
-    public function setStartCleanupAt($startCleanupAt)
+    public function setStartCleanupAt(DateTime $startCleanupAt)
     {
         $this->startCleanupAt = $startCleanupAt;
     }
 
+    /**
+     * @return DateTime
+     */
     public function getEndCleanupAt()
     {
         return $this->endCleanupAt;
     }
 
-    public function setEndCleanupAt($endCleanupAt)
+    /**
+     * @param DateTime $endCleanupAt
+     */
+    public function setEndCleanupAt(DateTime $endCleanupAt)
     {
         $this->endCleanupAt = $endCleanupAt;
     }

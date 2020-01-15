@@ -66,4 +66,13 @@ class Baker
     {
         $this->lastName = $lastName;
     }
+
+    /**
+     * @return false|string
+     */
+    public function getAbbreviatedName()
+    {
+        return sprintf("%s %s",
+        $this->getFirstName(), substr($this->getLastName(), 0, 1));
+    }
 }

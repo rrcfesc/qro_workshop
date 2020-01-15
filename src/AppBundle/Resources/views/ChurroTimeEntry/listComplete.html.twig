@@ -1,0 +1,47 @@
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>Churro Cooking Time Entries</h1>
+        </div>
+        <div class="col-sm-4">
+            <dl class="row" style="border: 2px solid #f7f7f9;">
+                <dt class="col-sm-8">Most efficient type</dt>
+                <dd class="col-sm-4">{{ bestType }}</dd>
+
+                <dt class="col-sm-8">Average Made for type</dt>
+                <dd class="col-sm-4">{{ avg }}</dd>
+            </dl>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>type</th>
+            <th>quantity made</th>
+            <th>cook time</th>
+            <th>cleanup time</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for timeEntry in timeEntries %}
+            <tr>
+                <td>{{ timeEntry.id }}</td>
+                <td>{{ timeEntry.type }}</td>
+                <td>{{ timeEntry.quantityMade }}</td>
+                <td>
+                    :{{ ((timeEntry.endCookingAt.timestamp - timeEntry.startCookingAt.timestamp) / 60)|round }}
+                </td>
+                <td
+                        {% if ((timeEntry.endCleanupAt.timestamp - timeEntry.startCleanupAt.timestamp) / 60) > 30 %}
+                            class="text-danger"
+                        {% endif %}
+                >
+                    :{{ ((timeEntry.endCleanupAt.timestamp - timeEntry.startCleanupAt.timestamp) / 60)|round }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>

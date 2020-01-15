@@ -2,3 +2,11 @@ services:
   AppBundle\Service\ChurroTimeEntryStatsHelper:
     public: true
     class: AppBundle\Service\ChurroTimeEntryStatsHelper
+    arguments:
+      - '@AppBundle\Service\GetChurroTimeEntry'
+
+  AppBundle\Service\GetChurroTimeEntry:
+    public: true
+    class: AppBundle\Service\GetChurroTimeEntry
+    arguments:
+      - '@doctrine.orm.default_entity_manager'
