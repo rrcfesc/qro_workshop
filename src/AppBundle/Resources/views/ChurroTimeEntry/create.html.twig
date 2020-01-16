@@ -1,0 +1,12 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block body %}
+<main role="main" class="container">
+    <div class="row">
+        <h1>Add a new time entry</h1>
+        {{ form_start(timeEntryForm) }}
+        {{ form_widget(timeEntryForm) }}
+        <button type="submit" class="btn btn-primary">Create</button>
+        {{ form_end(timeEntryForm) }}
+    </div>
+</main>
+{% endblock %}

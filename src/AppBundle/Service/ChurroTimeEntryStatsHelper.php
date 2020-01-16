@@ -48,7 +48,11 @@ class ChurroTimeEntryStatsHelper
         }
 
         $types = [];
+        /** @var ChurroTimeEntry $timeEntry */
         foreach ($timeEntries as $timeEntry) {
+            if ($timeEntry->getBakedBy()->getUsername() === 'jwage') {
+                continue;
+            }
             if ($useFilter && $timeEntry->getStartCookingAt()->format('H') < 6) {
                 // skip
             } else {

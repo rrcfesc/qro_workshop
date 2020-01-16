@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\ChurroTimeEntry;
+use AppBundle\Form\ChurroTimeEntryForm;
 use AppBundle\Service\ChurroTimeEntryStatsHelper;
 use AppBundle\Service\GetChurroTimeEntry;
 use InvalidArgumentException;
@@ -14,6 +15,27 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ChurroTimeEntryController extends Controller
 {
+
+    public function createAction(Request $request)
+    {
+        $churroTimeEntry = new ChurroTimeEntry();
+        $form = $this->createForm(ChurroTimeEntryForm::class, $churroTimeEntry);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->persist($churroTimeEntry);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('app_churro_time_entry_item', ['id' => $churroTimeEntry->getId()]);
+        }
+
+        return $this->render('@App/ChurroTimeEntry/create.html.twig',
+            [
+                'timeEntryForm' => $form->createView()
+            ]
+        );
+    }
+
     public function listAction()
     {
         /** @var ChurroTimeEntryStatsHelper $churroHelper */

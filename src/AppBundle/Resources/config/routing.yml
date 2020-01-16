@@ -8,6 +8,11 @@ app_churro_time_entry_list:
     defaults:
         _controller: 'AppBundle:ChurroTimeEntry:list'
 
+app_churro_time_entry_create:
+    path: /time-entries/create
+    defaults:
+        _controller: 'AppBundle:ChurroTimeEntry:create'
+
 app_churro_time_entry_item:
     path: /time-entries/{id}
     defaults:

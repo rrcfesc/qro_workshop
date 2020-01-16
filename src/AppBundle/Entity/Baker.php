@@ -32,6 +32,7 @@ class Baker
      */
     private $lastName;
 
+
     public function getId()
     {
         return $this->id;
@@ -49,7 +50,7 @@ class Baker
 
     public function getFirstName()
     {
-        return $this->firstName;
+        return ($this->firstName === null)  ? "" : $this->firstName;
     }
 
     public function setFirstName($firstName)
@@ -59,7 +60,7 @@ class Baker
 
     public function getLastName()
     {
-        return $this->lastName;
+        return ($this->lastName === null) ? "" : $this->lastName;
     }
 
     public function setLastName($lastName)

@@ -27,7 +27,12 @@ class BakerTest extends TestCase
     public function getData()
     {
         return [
-            ['Rik', 'Qwerty', 'Rik Q']
+            ['Rik', 'Qwerty', 'Rik Q'],
+            [null, null, ' '],
+            [null, "Test", ' T'],
+            [null, "", ' '],
+            ["", "", ' '],
+            [' ', ' ', '   '],
         ];
     }
 }
